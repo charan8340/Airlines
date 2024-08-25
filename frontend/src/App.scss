@@ -1,0 +1,835 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu";
+}
+
+
+:root{
+  --PrimaryColor:rgb(67, 131, 228);
+  --darkPrimary:rgb(40, 76, 126);
+  --SecondaryColor:hsl(191, 24%, 91%);
+  --colorOne:hsl(15,74%,70%);
+  --colorTwo:hsl(28,100%,82%);
+  --HoverColor:rgb(87, 154, 255);
+  --whiteColor:hsl(0,0%,100%);
+  --blackColor:hsl(0,0%,12%);
+  --textColor:rgb(65, 91, 114);
+  --borderColor:hsl(0,0%,83%);
+  --whiteColorDeam:hsl(0,0%, 93%);
+  --greyBg:hsl(0, 0%,96%);
+  --greyText:rgb(122, 155, 171);
+  --darkGrey:rgb(65, 91, 114);
+  --inputColor:hsl(330, 12%, 97%);
+  --glassColor: rgba(90, 176, 215, 0.2);
+  --glassColorWhite: rgba(207, 227, 242,0.7);
+  --glassColor2: rgba(125, 166, 185, 0.2);
+  --glassBorderColor: rgba(196, 236, 255, 0.5);
+  --boxShadow: box-Shadow:rgba (0, 0, 0, 0.1) 0px 10px 15px -3px, rgba (0, 0, 0, 0.05)
+  0px 4px 6px -2px;
+  --transition: 4s ease-in-out;
+}
+
+body{
+  background: (var --whiteColor);
+
+}
+
+a{
+  text-decoration: none;
+}
+
+li{
+  list-style: none;
+  cursor: pointer;
+}
+
+.section{
+  padding: 4rem 0 2rem;
+}
+
+.container{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.icon{
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.flex{
+  display:flex;
+  align-items: center;
+}
+
+.grid{
+  display:grid;
+  align-items: center;
+}
+
+.none{
+  display: none;
+}
+
+img,video{
+  width: 100%;
+  height: auto;
+}
+
+input{
+font-size: 100%;
+color: var(--greyText);
+}
+
+p{
+  font-size: 13px;
+  color: var(--greyText);
+  line-height: 22px;
+}
+
+h4{
+  padding: 1rem 0;
+  font-weight: 700;
+  color: var(--blackColor);
+}
+
+h2{
+  padding: 1rem 0;
+  font-size: 25px;
+  color: var(--blackColor);
+  font-family: 'Literata', serif;
+}
+
+.bttn{
+  padding: 0.7rem 1.5rem;
+  background-color: var(--PrimaryColor);
+  border: none;
+  outline: none;
+  border-radius: 3rem;
+  cursor: pointer;
+  color: var(--whiteColor);
+  a{
+    color: red;
+    font-weight: 500;
+  }
+  &:hover{
+    background-color: var(--HoverColor);
+    transition: .3s ease-in-out;
+  }
+}
+
+.navBar{
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  transition: .3s ease-in-out;
+
+  .logoDiv{
+    padding-left: 3rem;
+    margin-bottom: 1rem;
+    .logo{
+      margin-top: 0.5rem;
+      width: 10rem;
+    }
+  }
+
+  .menu{
+    flex-direction: row;
+    gap: 2.5rem;
+    font-size: 2rem;
+    padding-right: 2.5rem;
+
+    p{
+      color: var(--textColor);
+      margin-top: -.5rem;
+      
+      }
+    }
+    .profile{
+      color: var(--textColor);
+      
+      
+    }
+    .listItem{
+      padding: 0 .5rem;
+      font-size: 16px;
+      cursor: pointer;
+      color: var(--textColor);
+      font-weight: 500;
+      transition: .3s ease-in-out;
+      &:hover{
+        color: var(--HoverColor);
+        
+        font-weight: 500;
+        transform: translateY(-5px);
+        transition: .3s ease-in-out;
+      }
+    }
+  }
+  .btnOne{
+    margin-right: -2.4rem;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 1rem 0px 0px 1rem;
+    transition: .5s;
+    &:hover{
+      transform: translateY(-5px);
+      transition: .5s;
+    }
+  }
+  .btnTwo{
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 0rem 1rem 1rem 0rem;
+    transition: .5s;
+    &:hover{
+      transform: translateY(-5px);
+      transition: .5s;
+    }
+  }
+
+.navbar_With_Bg{
+  backdrop-filter: blur(30px);
+  background: var(--glassColorWhite);
+  transition: 0.3s ease-in-out;
+  box-shadow: rgba(0,0,0,0.1) 0px 10px 15px -3px, rgba(0,0,0,0.05) 0px 4px 6px -2px;
+}
+
+
+  
+
+.homelogo{
+  width: 100vw;
+  height: 100vh;
+  padding-top: 30vh;
+  text-align: center;
+  gap:2rem;
+  flex-direction: column;
+
+  .logoLarge{
+    position: absolute;
+    width: 40%;
+  }
+}
+
+
+
+.background{
+  position: fixed;
+  z-index: -1000;
+  align-items: center;
+  display: flex;
+  width: 100vw;
+}
+
+
+.search{
+  width: 100vw;
+  padding: 15rem;
+  margin-bottom: 20vh;
+  .header{
+    text-align: center;
+    color: var(--darkPrimary);
+  }
+  .sectionContainer{
+    background: var(--glassColor);
+    width:100%;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--glassBorderColor);
+    border-radius: 4rem;
+    row-gap: 2rem;
+    flex-direction: row;
+
+    .btns{
+      background: var(--SecondaryColor);
+      width: 40vw;
+      height: 150%;
+      border-radius: 4rem;
+      flex-direction: row;
+      margin: auto;
+      
+      .singleBtn{
+        padding: .8rem 1.5rem;
+        font-size: 18px;
+        color: var(--darkPrimary);
+        border-radius: 4rem;
+        width: 100%;
+        text-align: center;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        transition: .3s ease-in-out;
+
+        &:hover{
+          background: var(--PrimaryColor);
+          color: var(--whiteColor);
+          font-weight: 500;
+          transition: .3s ease-in-out;
+        }
+      }
+      .active{
+        background: var(--PrimaryColor);
+        color: var(--whiteColor);
+        font-weight: 500;
+      }
+    }
+    .searchInputs{
+      justify-content: center;
+      flex-direction: column;
+      gap: 2rem;
+      flex-direction: row;
+      padding: 8rem;
+      backdrop-filter: blur(50px);
+      background: var(--glassColor2);
+      border-radius: 4rem;
+      margin: 5rem;
+      margin-top: 6rem;
+
+      .bttn{
+        margin-top: 2rem;
+      }
+
+      .singleInput{
+        .iconDiv{
+          margin-top: 2rem;
+          padding: 16px 16px;
+          border-radius: 3rem;
+          background: var(--glassColor2);
+          margin-right: 4rem;
+
+          .icon{
+            color: var(--darkPrimary);
+            opacity: .7;
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        .texts{
+          h4{
+            margin-bottom: 0;
+            color: var(--darkPrimary);
+            font-weight: 700;
+            font-size: 20px;
+          }
+
+          input{
+            width:95%;
+            border: none;
+            outline: none;
+            background: transparent;
+            border-bottom: 2px solid var(--greyText);
+            opacity: .75;
+
+            &::placeholder{
+              font-size: 16px;
+              color: var(--greyText);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.support{
+  background: var(--whiteColor);
+  width: 100vw;
+  text-align: center;
+  .sectionContainer{
+    margin-left: 20vw;
+    margin-right: 20vw;
+    margin-bottom: 10vh;
+    margin-top: 5vh;
+    .infoDiv{
+      .textDiv{
+        .singleInfo{
+          h4{
+            margin-top: 2rem;
+            color: var(--textColor);
+            font-size: 2rem;
+          }
+          p{
+            font-size: 1.2rem;
+            margin-left: 10vw;
+            margin-right: 10vw;
+            margin-bottom: 6rem;
+            color: var(--greyText);
+          }
+          .numberContainer{
+            background-color: var(--PrimaryColor);
+            border-radius: 45px;
+            margin: auto;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            width: 120px;
+            height: 120px;
+            .number{
+              font-weight: 900;
+              font-size: 4rem;
+              color: var(--whiteColor);
+            }
+          }
+        }
+      }
+    }
+    .titlesDiv{
+      justify-content: center;
+      p{
+        margin: auto;
+        font-size: 1.2rem;
+        width: 20rem;
+        margin-top: 1rem;
+        margin-bottom: 6rem;
+      }
+      .caption{
+        font-weight:600;
+        font-variant-caps: all-petite-caps;
+        font-size: 10rem;
+        color: var(--darkPrimary);
+        font-family: "Ubuntu";
+      }
+    }
+  }
+}
+
+.info{
+  backdrop-filter: blur(30px);
+  background: var(--glassColorWhite);
+  .infoContainer{
+    .titleDiv{
+      flex-direction: column;
+      text-align: center;
+      gap:1.5rem;
+      justify-content: center;
+      h2{
+        font-family: "Ubuntu";
+        color: var(--darkPrimary);
+        font-size: 2.5rem;
+      }
+    }
+    .cardsDiv2{
+      margin-top: 3rem;
+      grid-template-columns: repeat(2,1fr);
+      margin-top: 100px;
+      margin-bottom: 150px;
+      margin-left: 17.5vw;
+      margin-right: 17.5vw;
+      
+      .singleImage{
+        background: var(--whiteColor);
+        padding: .75rem;
+        border-radius: 15rem;
+        gap: 1rem;
+        text-align: center;
+        margin: auto;
+        height: 360px;
+        width: 260px;
+        max-width: 250px;
+        transition: .5s ease-in-out;
+        &:hover{
+          transform:translateY(-20px) ;
+          transition: .5s ease-in-out;
+        }
+      }
+    }
+    .cardsDiv{
+      margin-left: 5vw;
+      margin-right: 5vw;
+      margin-top: 8rem;
+      grid-template-columns: repeat(3,1fr);
+      .singleCard{
+        p{
+          margin-bottom: 1rem;
+        }
+        background: var(--whiteColor);
+        padding: 3rem 2rem;
+        border-radius: 15rem;
+        gap: 1rem;
+        text-align: center;
+        margin: auto;
+        height: 360px;
+        width: 90%;
+        max-width: 250px;
+        transition: .5s ease-in-out;
+        &:hover{
+          transform:translateY(-20px) ;
+          transition: .5s ease-in-out;
+        }
+        .iconDiv{
+          justify-content: center;
+          margin: auto;
+          background: var(--PrimaryColor);
+          width: max-content;
+          height: 60px;
+          width: 60px;
+          padding: 1rem;
+          border-radius: 10rem;
+          
+
+          .icon{
+            color: var(--whiteColor);
+            width: 18px;
+            height: 18px;
+            
+          }
+          
+        }
+        .cardTitle{
+          color: var(--darkPrimary);
+          font-weight: 700;
+          font-size: 1.5rem;
+        }
+        .colorOne{
+          background: var(--PrimaryColor);
+        }
+      }
+      .singleImage{
+        background: var(--whiteColor);
+        padding: 1rem;
+        border-radius: 15rem;
+        gap: 1rem;
+        text-align: center;
+        margin: auto;
+        height: 360px;
+        width: 90%;
+        max-width: 250px;
+      }
+    }
+  }
+}
+
+.footer{
+  background: var(--whiteColor);
+  padding-top: 3rem;
+  .sectionContainer{
+    align-items: flex-start;
+    flex-direction: row;
+    display: flex;
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+    .gridOne{
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      .logoDiv{
+        width: 20rem;
+      }
+      .socialIcon{
+        margin-top: 1rem;
+        gap: 1rem;
+        .icon{
+          height: 50px;
+          width: 40px;
+          border-radius: 20rem;
+          border: 1px solid var(--greyText);
+          box-shadow: var(--boxShadow);
+          padding: .4rem;
+          color:var(--greyText);
+          transition: .8s ease-in-out;
+
+          &:hover{
+            color:var(--whiteColor);
+            border: 1px solid var(--greyText);
+            transition: .5s ease-in-out;
+            background: var(--greyText);
+            transform: translateY(-7px);
+          }
+        }
+      }
+    }
+    .footerLinks{
+      letter-spacing: 0.2rem;
+      display: grid;
+      margin-top: 3rem;
+      justify-content: center;
+      width: 45vw;
+      .linkTitle{
+        color: var(--darkPrimary);
+        font-weight: 500;
+        font-size: 1.5rem;
+        display: block;
+        padding-bottom: 1.2rem;
+      }
+      li a{
+        padding-bottom: .4rem;
+        font-weight: 400;
+        display: block;
+        font-size: 1rem;
+        color: var(--greyText);
+        transition: .4s ease-in-out;
+
+        &:hover{
+          transform:translateX(7px) ;
+          color: var(--darkPrimary);
+          font-weight: 400;
+          transition: .4s ease-in-out;
+          text-decoration: none
+      }
+    }
+  }
+  .quote{
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    font-weight: 700;
+    width: 20rem;
+    color: var(--darkGrey);
+  }
+  .underQuote{
+    font-weight: 100;
+  }
+}
+.copyrightDiv{
+  opacity: .5;
+  border-top: 1px solid rgba(145, 145, 145,0.5);
+  color: var(--greyText);
+  text-align: center;
+  justify-content: center;
+  .copyright{
+    margin-right: 5px;
+    margin-top: -0.5px;
+    height: 15px;
+    width: 15px;
+  }
+  .bottomText{
+    font-size: 10px;
+    margin-bottom: 0px;
+  }
+}
+}
+
+
+.flightTable{
+    padding-top: 25vh;
+    color: var(--darkPrimary);
+    text-align: center;
+      h1{
+        font-size: 2rem;
+        padding-bottom: 5vh;
+      }
+    
+}
+
+.ContainerBooking{
+  font-family: "Ubuntu";
+padding-top: 15vh;
+padding-bottom: 15vh;
+padding-left: 20vw;
+padding-right: 20vw;
+display:flex;
+justify-content: center;
+.glassBox{
+  width: 60rem;
+  background-color: var(--glassColor);
+  padding: 6rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  border: 2px solid var(--glassBorderColor);
+  backdrop-filter: blur(10px);
+  
+  .singleInput{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    .iconDiv{
+          padding: 14px 14px;
+          border-radius: .5rem;
+          background: var(--glassColor2);
+
+      .icon{
+        color: var(--blackColor);
+            opacity: .7;
+            width: 25px;
+            height: 25px;
+      }
+    }
+    
+    background-color: var(--glassColor);
+    border-radius: 1rem;
+  }
+  h1{
+    font-weight: 500;
+    color: var(--darkPrimary);
+  }
+  .allfaqs{
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    background: var(--glassColor);
+    backdrop-filter: blur(20px);
+    border-radius: 1.5rem;
+    .faqs{
+      box-shadow:none;
+      background: rgba(0, 0, 0,0);
+      h4{
+        padding-left: 1rem;
+        font-family: "Ubuntu";
+        color: var(--textColor);
+        font-weight: 500;
+      }
+      h6{
+        color: var(--darkPrimary);
+        font-weight: 400;
+        font-size: .8rem;
+        padding-left: 1.5rem;
+        padding-right: 2rem;
+        margin-top: -1rem;
+        text-align: start;
+      }
+  }
+  }
+  
+
+  .bttnBooking{
+    color: var(--whiteColor);
+    background-color: var(--PrimaryColor);
+    width: 15rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    height: 3rem;
+    border-radius: 1rem;
+    &:hover{
+      background-color: var(--HoverColor);
+    }
+  }
+}
+}
+
+.ContainerSchedule{
+  font-family: "Ubuntu";
+  padding-top: 15vh;
+  padding-left: 20vw;
+  padding-right: 20vw;
+  display:flex;
+  justify-content: center;
+  .glassBox{
+    background-color: var(--glassColor);
+    padding: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: 2px solid var(--glassBorderColor);
+    backdrop-filter: blur(10px);
+    h1{
+      font-weight: 500;
+      color: var(--darkPrimary);
+      padding-bottom:1rem ;
+    }
+    .models{
+      background: var(--glassColor);
+      border-radius: 2rem;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+      
+      .table{
+      border: none;
+      color: var(--darkPrimary);
+      
+    }
+    }
+    
+  }
+  }
+
+.signinContainer{
+  font-family: "Ubuntu";
+  padding-top: 15vh;
+  padding-left: 20vw;
+  padding-right: 20vw;
+  margin-bottom: 10vh;
+  display:flex;
+  justify-content: center;
+   .glassBox{
+    background-color: var(--glassColor);
+    padding: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: 2px solid var(--glassBorderColor);
+    backdrop-filter: blur(10px);
+    
+    .signin{
+      h1{
+        color: var(--darkPrimary);
+        font-family: "Ubuntu";
+        font-size: 2rem;
+        font-weight: 500;
+
+      
+    }.allBoxes{
+      backdrop-filter: blur(50px);
+      padding: 3rem;
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      background: var(--glassColor);
+      border-radius: 2rem;
+      font-family: "Ubuntu";
+      .box{   
+        gap: 1rem;
+        display: flex;
+        flex-direction: row;
+        margin-top: -1rem;
+        .iconDiv{
+          height: 60px;
+          width: 60px;
+          margin: 1rem;
+          margin-left: 0;
+          margin-right: 0;
+          padding: 14px;
+          border-radius: .5rem;
+          background: var(--glassColor2);
+
+    .icon{
+      padding: auto;
+      margin: auto;
+      color: var(--blackColor);
+          opacity: .7;
+          width: 25px;
+          height: 25px;
+    }
+  }}
+  
+      }
+  }
+  .bttnsignin{
+    box-shadow: none;
+    color: var(--whiteColor);
+    background-color: var(--PrimaryColor);
+    width: 15rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    height: 3rem;
+    border-radius: 1rem;
+    &:hover{
+      background-color: var(--HoverColor);
+    }
+  }
+}
+}
+ 
