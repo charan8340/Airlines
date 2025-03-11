@@ -56,87 +56,87 @@ const AircraftTable = () => {
     };
 
 
-    const rows : GridRowsProp = models.map(model => ({id: model.aircraft_id, model_id: model.model_id, call_sign: model.call_sign, valid: model.valid.data}));
-
-    const columns : GridColDef[] = [
-        {
-            field: 'id',
-            headerName: 'Aircraft ID',
-            width: 200
-        }, {
-            field: 'model_id',
-            headerName: 'Model ID',
-            width: 200
-        }, {
-            field: 'call_sign',
-            headerName: 'Call Sign',
-            width: 250
-        }, {
-            field: 'valid',
-            headerName: 'Valid',
-            width: 250
-        },{
-            field: 'edit',
-            headerName: '',
-            width: 100,
-            sortable: false,
-            disableClickEventBubbling: true,
-            
-            renderCell: (params) => {
-                return (
+    const rows = models.map(model => ({
+        id: model.aircraft_id, 
+        model_id: model.model_id, 
+        call_sign: model.call_sign, 
+        valid: model.valid.data
+      }));
+      
+      const columns = [
+          {
+              field: 'id',
+              headerName: 'Aircraft ID',
+              width: 200
+          }, 
+          {
+              field: 'model_id',
+              headerName: 'Model ID',
+              width: 200
+          }, 
+          {
+              field: 'call_sign',
+              headerName: 'Call Sign',
+              width: 250
+          }, 
+          {
+              field: 'valid',
+              headerName: 'Valid',
+              width: 250
+          },
+          {
+              field: 'edit',
+              headerName: '',
+              width: 100,
+              sortable: false,
+              disableClickEventBubbling: true,
+              renderCell: (params) => (
                   <Stack direction="row" spacing={2}>
-                    <Button  color="primary"   size="small" 
-                    href={`/aircraft_update/`+params.row.id} >
-                        Update
-                    </Button>
+                      <Button color="primary" size="small" href={`/aircraft_update/${params.row.id}`}>
+                          Update
+                      </Button>
                   </Stack>
-                );
-            },
-          },{
-            field: 'delete',
-            headerName: '',
-            width: 100,
-            sortable: false,
-            disableClickEventBubbling: true,
-            
-            renderCell: (params) => {
-                return (
+              )
+          },
+          {
+              field: 'delete',
+              headerName: '',
+              width: 100,
+              sortable: false,
+              disableClickEventBubbling: true,
+              renderCell: (params) => (
                   <Stack direction="row" spacing={2}>
-                    
-                    {/* <Button variant="outlined" color="warning" size="small" href=''>Edit</Button> */}
-                    <Button  color="error"  size="small"   onClick={handleClickOpen}>Delete</Button>
-                    {/* ()=>handleDelete(params.row.id) */}
-                    
-                    <Dialog
-                        fullScreen={fullScreen}
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="responsive-dialog-title"
-                    >
-                    <DialogTitle id="responsive-dialog-title">
-                        {"Delete aircraft instance?"}
-                        </DialogTitle>
-                        <DialogContent>
-                        <DialogContentText>
-                            Are you sure you want to delete aircaft instance. You might not be able to store it again.
-                        </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                        <Button autoFocus onClick={handleClose}>
-                            Cancel
-                        </Button>
-                        <Button onClick={()=>handleDelete(params.row.id)} color="error"  autoFocus>
-                            Delete
-                        </Button>
-                        </DialogActions>
-                    </Dialog>
-
+                      <Button color="error" size="small" onClick={handleClickOpen}>
+                          Delete
+                      </Button>
+                      <Dialog
+                          fullScreen={fullScreen}
+                          open={open}
+                          onClose={handleClose}
+                          aria-labelledby="responsive-dialog-title"
+                      >
+                          <DialogTitle id="responsive-dialog-title">
+                              {"Delete aircraft instance?"}
+                          </DialogTitle>
+                          <DialogContent>
+                              <DialogContentText>
+                                  Are you sure you want to delete this aircraft instance? You might not be able to restore it again.
+                              </DialogContentText>
+                          </DialogContent>
+                          <DialogActions>
+                              <Button autoFocus onClick={handleClose}>
+                                  Cancel
+                              </Button>
+                              <Button onClick={() => handleDelete(params.row.id)} color="error" autoFocus>
+                                  Delete
+                              </Button>
+                          </DialogActions>
+                      </Dialog>
                   </Stack>
-                );
-            },
+              )
           }
-    ];
-
+      ];
+            
     return ( <> <Box component="main" sx={{ flexGrow: 1, paddingTop: 4.5 }}>
         
         

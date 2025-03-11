@@ -1,26 +1,24 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
 
-// Looks for db.env file WITHIN the config/ folder
-dotenv.config({path: "./db.env"});
+// Load environment variables
+dotenv.config({ path: "./config/db.env" });
 
-// Populate with your values, can keep `connectionLimit` unchanged. 
-const db = mysql.createPool({
-    connectionLimit: 10,
-    host           : "localhost", 
-    user           : "root",
-    password       : "root123",
-    database       : "airline_project_g24",
+const db = mysql.createConnection({
+    host     : process.env.DB_HOST || "localhost",
+    port     : process.env.DB_PORT || 3348,  // Ensure it matches XAMPP MySQL
+    user     : process.env.DB_USER || "root",
+    password : process.env.DB_PASSWORD || "",
+    database : process.env.DB_DATABASE || "Airlines"
 });
 
-// The following SHOULD be how the connection is made, unfortunately, for some
-// reason the db.env file doesn't seem to be read...
-// const db = mysql.createPool({
-//     connectionLimit: 10,
-//     host           : process.env.DB_HOST,
-//     user           : process.env.DB_USER,
-//     password       : process.env.DB_PASSWORD,
-//     database       : process.env.DB_DATABASE,
-// });
+// Connect to XAMPP's MySQL
+db.connect((err) => {
+    if (err) {
+        console.error("❌ XAMPP MySQL Connection Failed:", err);
+        return;
+    }
+    console.log("✅ Connected to XAMPP MySQL Database!");
+});
 
 export default db;

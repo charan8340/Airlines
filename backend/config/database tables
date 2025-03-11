@@ -1,0 +1,172 @@
+-- Create table for customers
+CREATE TABLE customer (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    membership VARCHAR(50),
+    username VARCHAR(50),
+    password VARCHAR(255),
+    name VARCHAR(255),
+    date_of_birth DATE,
+    address VARCHAR(255),
+    phone_number VARCHAR(20),
+    nic VARCHAR(20),
+    passport_id VARCHAR(20),
+    user_role VARCHAR(20)
+);
+
+-- Create table for aircraft models
+CREATE TABLE aircraft_model (
+    model_id INT AUTO_INCREMENT PRIMARY KEY,
+    brand VARCHAR(255),
+    model VARCHAR(255),
+    economy_seats INT,
+    business_seats INT,
+    platinum_seats INT,
+    valid BOOLEAN DEFAULT TRUE
+);
+
+-- Create table for locations
+CREATE TABLE location (
+    location_id INT AUTO_INCREMENT PRIMARY KEY,
+    location_name VARCHAR(255),
+    parent_location_id INT,
+    FOREIGN KEY (parent_location_id) REFERENCES location(location_id) ON DELETE SET NULL
+);
+
+-- Create table for airports
+CREATE TABLE airport (
+    airport_code VARCHAR(10) PRIMARY KEY,
+    name VARCHAR(255),
+    location_id INT,
+    valid BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (location_id) REFERENCES location(location_id) ON DELETE SET NULL
+);
+
+-- Create table for aircraft
+CREATE TABLE aircraft (
+    aircraft_id INT AUTO_INCREMENT PRIMARY KEY,
+    model_id INT,
+    call_sign VARCHAR(50),
+    valid BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (model_id) REFERENCES aircraft_model(model_id) ON DELETE CASCADE
+);
+
+-- Create table for routes
+CREATE TABLE route (
+    route_id INT AUTO_INCREMENT PRIMARY KEY,
+    origin VARCHAR(100),
+    destination VARCHAR(100),
+    economy_price DECIMAL(10, 2),
+    business_price DECIMAL(10, 2),
+    platinum_price DECIMAL(10, 2),
+    valid BOOLEAN DEFAULT TRUE
+);
+
+-- Create table for flights
+CREATE TABLE flight (
+    flight_id INT AUTO_INCREMENT PRIMARY KEY,
+    route_id INT,
+    aircraft_id INT,
+    departure_time DATETIME,
+    arrival_time DATETIME,
+    status VARCHAR(20),
+    delay INT,
+    valid BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (route_id) REFERENCES route(route_id) ON DELETE CASCADE,
+    FOREIGN KEY (aircraft_id) REFERENCES aircraft(aircraft_id) ON DELETE CASCADE
+);
+
+-- Create table for seats
+CREATE TABLE seat (
+    seat_id INT AUTO_INCREMENT PRIMARY KEY,
+    flight_id INT,
+    seat_class VARCHAR(20),
+    seat_number VARCHAR(10),
+    availability BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (flight_id) REFERENCES flight(flight_id) ON DELETE CASCADE
+);
+
+-- Create table for bookings
+CREATE TABLE booking (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    flight_id INT,
+    seat_id INT,
+    payment_status BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
+    FOREIGN KEY (flight_id) REFERENCES flight(flight_id) ON DELETE CASCADE,
+    FOREIGN KEY (seat_id) REFERENCES seat(seat_id) ON DELETE CASCADE
+);
+
+
+
+-- Insert Data into customer
+INSERT INTO customer (membership, username, password, name, date_of_birth, address, phone_number, nic, passport_id, user_role) VALUES
+('Gold', 'rajivk', 'pass123', 'Rajiv Kumar', '1985-06-15', 'Delhi, India', '9876543210', 'NIC1001', 'P1001', 'customer'),
+('Silver', 'anitar', 'pass456', 'Anita Rao', '1992-03-22', 'Mumbai, India', '9765432109', 'NIC1002', 'P1002', 'customer'),
+('Platinum', 'vikrams', 'secure789', 'Vikram Shenoy', '1988-09-30', 'Bangalore, India', '9654321098', 'NIC1003', 'P1003', 'admin'),
+('Gold', 'sunita', 'pass101', 'Sunita Gupta', '1995-12-18', 'Kolkata, India', '9543210987', 'NIC1004', 'P1004', 'customer'),
+('Silver', 'arjunm', 'safe111', 'Arjun Mehta', '1990-07-05', 'Chennai, India', '9432109876', 'NIC1005', 'P1005', 'customer');
+
+-- Insert Data into aircraft_model
+INSERT INTO aircraft_model (brand, model, economy_seats, business_seats, platinum_seats, valid) VALUES
+('Boeing', '737', 150, 20, 10, TRUE),
+('Airbus', 'A320', 180, 24, 12, TRUE),
+('Embraer', 'E195', 120, 18, 8, TRUE),
+('Boeing', '777', 250, 40, 20, TRUE),
+('Airbus', 'A350', 300, 50, 25, TRUE);
+
+-- Insert Data into location
+INSERT INTO location (location_name, parent_location_id) VALUES
+('Delhi', NULL),
+('Mumbai', NULL),
+('Bangalore', NULL),
+('Chennai', NULL),
+('Kolkata', NULL);
+
+-- Insert Data into airport
+INSERT INTO airport (airport_code, name, location_id, valid) VALUES
+('DEL', 'Indira Gandhi International Airport', 1, TRUE),
+('BOM', 'Chhatrapati Shivaji Maharaj Airport', 2, TRUE),
+('BLR', 'Kempegowda International Airport', 3, TRUE),
+('MAA', 'Chennai International Airport', 4, TRUE),
+('CCU', 'Netaji Subhas Chandra Bose Airport', 5, TRUE);
+
+-- Insert Data into aircraft
+INSERT INTO aircraft (model_id, call_sign, valid) VALUES
+(1, 'VT-ABC', TRUE),
+(2, 'VT-XYZ', TRUE),
+(3, 'VT-PQR', TRUE),
+(4, 'VT-LMN', TRUE),
+(5, 'VT-JKL', TRUE);
+
+-- Insert Data into route
+INSERT INTO route (origin, destination, economy_price, business_price, platinum_price, valid) VALUES
+('Delhi', 'Mumbai', 5000.00, 12000.00, 20000.00, TRUE),
+('Mumbai', 'Bangalore', 4500.00, 11000.00, 18000.00, TRUE),
+('Bangalore', 'Chennai', 4000.00, 10000.00, 16000.00, TRUE),
+('Chennai', 'Kolkata', 5500.00, 13000.00, 22000.00, TRUE),
+('Kolkata', 'Delhi', 6000.00, 14000.00, 24000.00, TRUE);
+
+-- Insert Data into flight
+INSERT INTO flight (route_id, aircraft_id, departure_time, arrival_time, status, delay, valid) VALUES
+(1, 1, '2025-03-12 08:00:00', '2025-03-12 10:30:00', 'Scheduled', 0, TRUE),
+(2, 2, '2025-03-13 09:00:00', '2025-03-13 11:00:00', 'Scheduled', 0, TRUE),
+(3, 3, '2025-03-14 07:30:00', '2025-03-14 09:00:00', 'Delayed', 15, TRUE),
+(4, 4, '2025-03-15 10:00:00', '2025-03-15 12:30:00', 'Scheduled', 0, TRUE),
+(5, 5, '2025-03-16 12:00:00', '2025-03-16 14:30:00', 'Cancelled', 0, FALSE);
+
+-- Insert Data into seat
+INSERT INTO seat (flight_id, seat_class, seat_number, availability) VALUES
+(1, 'Economy', '12A', TRUE),
+(2, 'Business', '5B', TRUE),
+(3, 'Economy', '14C', FALSE),
+(4, 'Platinum', '1A', TRUE),
+(5, 'Economy', '22D', TRUE);
+
+-- Insert Data into booking
+INSERT INTO booking (customer_id, flight_id, seat_id, payment_status) VALUES
+(1, 1, 1, TRUE),
+(2, 2, 2, TRUE),
+(3, 3, 3, FALSE),
+(4, 4, 4, TRUE),
+(5, 5, 5, FALSE);
